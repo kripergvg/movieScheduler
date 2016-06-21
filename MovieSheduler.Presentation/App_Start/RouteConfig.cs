@@ -1,0 +1,25 @@
+﻿using System.Web.Mvc;
+using System.Web.Routing;
+
+namespace MovieSheduler.Presentation
+{
+    public class RouteConfig
+    {
+        public static void RegisterRoutes(RouteCollection routes)
+        {
+            routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+
+            routes.MapRoute(
+               name: "Default",
+               url: "",
+               defaults: new { controller = "Shedule", action = "Index" }
+           );
+
+            routes.MapRoute(
+                name: "CinemaSchedule",
+                url: "cinemaschedule/{action}",
+                defaults: new { controller = "Shedule", action = "Index"}
+            );
+        }
+    }
+}
