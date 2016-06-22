@@ -45,6 +45,10 @@ namespace MovieSheduler.EntityFramework.Migrations
 	                JOIN Cinemas c ON sr.CinemaId=c.Id
 	                WHERE CAST([Date] as DATE)=CAST(@date AS DaTE)");
 
+            CreateStoredProcedure("dbo.GetDistinctDates",
+                @"SELECT DISTINCT CAST ([Date] as DATE)
+                  FROM[SheduleRecords]");
+
         }
         
         public override void Down()
@@ -56,6 +60,7 @@ namespace MovieSheduler.EntityFramework.Migrations
             DropTable("dbo.Movies");
             DropTable("dbo.Cinemas");
             DropStoredProcedure("dbo.GetSheduleByDate");
+            DropStoredProcedure("dbo.GetDistinctDates");
 
         }
     }

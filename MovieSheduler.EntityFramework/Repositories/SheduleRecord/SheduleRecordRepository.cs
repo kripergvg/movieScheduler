@@ -57,5 +57,24 @@ namespace MovieSheduler.EntityFramework.Repositories.SheduleRecord
         {
             return Table.Any(r => r.CinemaId == record.CinemaId && r.MovieId == record.MovieId && r.Date == record.Date);
         }
+
+        //TODO коммент почему нужна процедура
+        public async Task<IReadOnlyCollection<DateTime>> GetAvailableDates()
+        {
+            return await Task.Run(() => Context.Database.SqlQuery<DateTime>("GetDistinctDates").ToList().AsReadOnly());
+            //return (await Table.Select(r => r.Date.Date).Distinct().ToListAsync()).AsReadOnly();
+        }
+
+        public async Task<IReadOnlyCollection<Domain.SheduleRecord.SheduleRecord>> GetRecords(int cinemaId, int movieId, DateTime date)
+        {
+            return (await Table.Where(r => r.Date.Day == date.Day && r.Date.Month == date.Month && r.Date.Day == date.Day
+                                           && r.CinemaId == cinemaId && r.MovieId == movieId).ToListAsync()).AsReadOnly();
+        }
+
+        public async Task<bool> RecordExist(int cinemaId, int movieId, DateTime date)
+        {
+            return await Table.AnyAsync(r => r.Date.Day == date.Day && r.Date.Month == date.Month && r.Date.Day == date.Day
+                                             && r.CinemaId == cinemaId && r.MovieId == movieId);
+        }
     }
 }

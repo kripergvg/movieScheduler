@@ -5,40 +5,55 @@
 }
 
 <h2>Расписание</h2>
+@using (Html.BeginForm("Index", "Shedule", FormMethod.Get, new { @class = "inline" }))
+{
+    @Html.ValidationSummary("", new { @class = "text-danger" })
+    <select class="form-control inline" id="Date" name="Date">
+        @foreach (var dateListItem in Model.AvailableDates)
+        {
+            <option value="@dateListItem.Text" @(dateListItem.Selected ? "selected" : "")>@dateListItem.Text</option>
+        }
+    </select>
+    @*@Html.DropDownListFor(m => m.Date, Model.AvailableDates, new { @class = "form-control", data_val = false })*@
+    <input type="submit" class="btn btn-default" value="Показать" />
+    @*<a class="btn btn-default" href="@Url.Action("Add")">Показать</a>*@
+}
+
+
 <a class="btn btn-default" href="@Url.Action("Add")">Добавить</a>
 <table>
     <thead>
-    <tr>
-        <th>
-            Кинотеатр
-        </th>
-        <th>
-            Фильм
-        </th>
-        <th>
-            Сеансы
-        </th>
-        <th></th>
-    </tr>
+        <tr>
+            <th>
+                Кинотеатр
+            </th>
+            <th>
+                Фильм
+            </th>
+            <th>
+                Сеансы
+            </th>
+            <th></th>
+        </tr>
     </thead>
     <tbody>
-    @foreach (var cinema in Model.Cinemas)
-    {
-        <tr>
-            <td>@cinema.Name</td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        foreach (var movie in cinema.Movies)
+        @foreach (var cinema in Model.Cinemas)
         {
             <tr>
+                <td>@cinema.Name</td>
                 <td></td>
-                <td>@movie.Name</td>
-                <td>@String.Join(", ", movie.TimeList)</td>
-                <td>Редактировать</td>
+                <td></td>
+                <td></td>
             </tr>
+            foreach (var movie in cinema.Movies)
+            {
+                <tr>
+                    <td></td>
+                    <td>@movie.Name</td>
+                    <td>@String.Join(", ", movie.TimeList)</td>
+                    <td>@Html.ActionLink("Редактировать", "Edit", new { cinemaId = cinema.Id, movieId = movie.Id, date = Model.Date.ToShortDateString() }) </td>
+                </tr>
+            }
         }
-    }
     </tbody>
 </table>

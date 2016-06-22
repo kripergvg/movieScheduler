@@ -1,0 +1,87 @@
+﻿@model MovieSheduler.Presentation.Models.EditSheduleRecordViewModel
+
+@{
+    ViewBag.Title = "Редактирование расписания";
+}
+
+<h2>Редактирование расписания</h2>
+
+@using (Html.BeginForm("Edit", "Shedule", FormMethod.Post, new { @class = "form-horizontal", role = "form"}))
+{
+    @Html.AntiForgeryToken()
+    <hr />
+    @Html.ValidationSummary("", new { @class = "text-danger" })
+    @Html.HiddenFor(m=>m.CinemaId)
+    @Html.HiddenFor(m=>m.MovieId)
+    @Html.HiddenFor(m=>m.Date)
+    <div class="form-group">
+        @Html.LabelFor(m => m.CinemaName, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            <input class="form-control" value="@Model.CinemaName" type="text" disabled>
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.MovieName, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            <input class="form-control" value="@Model.MovieName" type="text" disabled>
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Date, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            <input class="form-control" value="@Model.Date.ToShortDateString()" type="text" disabled>
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.TimeList, new { @class = "col-md-2 control-label" })
+        <div class="col-md-3">
+            <div data-time-list-container class="timeListContainer">
+                @foreach (var time in Model.TimeList)
+                {
+                    <div data-time-list-item>
+                        <div class="input-group time-item">
+                            <input type="text" class="form-control" data-val-required="Нужно заполнить время" data-val="true" value="@time.Hours.ToString("00"):@time.Minutes.ToString("00")" data-val-regex="Время должно быть в формате 00:00" data-val-regex-pattern="^(?:[01]?[0-9]|2[0-3]):[0-5][0-9]$" name="TimeList">
+                            <div class="input-group-btn">
+                                <button type="button" class="btn btn-info" data-time-list-remove aria-label="Help">
+                                    <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                                </button>
+                            </div>
+                        </div>
+                        <span class="field-validation-valid text-danger" data-valmsg-for="TimeList" data-valmsg-replace="true"></span>
+                    </div>
+                }
+
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <button type="button" class="btn btn-primary" data-time-list-add>
+                <span class="glyphicon glyphicon-plus add-btn" aria-hidden="true"></span> Добавить
+            </button>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" class="btn btn-success" value="Сохранить"/>
+            <a href="@Url.Action("Index")" class="btn btn-warning">Отмена</a>
+            <input type="submit" data-shedule-record-delete class="btn btn-danger" value="Удалить" />
+        </div>
+        @*<div class="col-md-1">
+            <input type="submit" class="btn btn-default" value="Отмена"/>
+        </div>
+        <div class="col-md-1">
+            <input type="submit" class="btn btn-default" value="Удалить" />
+        </div>*@
+    </div>
+}
+
+@using (Html.BeginForm("Delete", "Shedule", FormMethod.Post, new { data_shedule_record_delete_form = true }))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.CinemaId)
+    @Html.HiddenFor(m => m.MovieId)
+    @Html.HiddenFor(m => m.Date)
+}
+

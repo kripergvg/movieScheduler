@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Data.Entity;
+using System.Threading.Tasks;
 using MovieSheduler.Domain;
 using MovieSheduler.Domain.Infrastructure;
 
@@ -28,7 +29,19 @@ namespace MovieSheduler.EntityFramework.Infrastructure
             TEntity entity = GetFromLocal(id);
             if (entity == null)
             {
-                entity = Table.FirstOrDefault(ent => EqualityComparer<TPrimaryKey>.Default.Equals(ent.Id, id));
+                entity = Table.Find(id);
+            }
+            return entity;
+        }
+
+        public async virtual Task<TEntity> GetByIdAsync(TPrimaryKey id)
+        {
+            TEntity entity = GetFromLocal(id);
+            if (entity == null)
+            {
+                //var t = entity.Id.GetType();
+                //EqualityComparer<TPrimaryKey>.Default.Equals(ent.Id, id)
+                entity = await Table.FindAsync(id);
             }
             return entity;
         }
@@ -45,11 +58,17 @@ namespace MovieSheduler.EntityFramework.Infrastructure
             TEntity entity = GetFromLocal(id);
             if (entity == null)
             {
-                entity = Table.FirstOrDefault(ent => EqualityComparer<TPrimaryKey>.Default.Equals(ent.Id, id));
+                entity = Table.Find(id);
                 if (entity == null)
                     return;
             }
             Table.Remove(entity);
+        }
+
+        public virtual void Delete(TEntity entity)
+        {
+            AttachIfNot(entity);
+            Context.Entry(entity).State = EntityState.Deleted;
         }
 
         private void AttachIfNot(TEntity entity)
@@ -66,9 +85,8 @@ namespace MovieSheduler.EntityFramework.Infrastructure
         private TEntity GetFromLocal(TPrimaryKey id)
         {
             var entry = Context.ChangeTracker.Entries()
-                .FirstOrDefault(ent =>
-                       ent.Entity is TEntity &&
-                       EqualityComparer<TPrimaryKey>.Default.Equals(id, ((TEntity)ent.Entity).Id));
+                .FirstOrDefault(ent => ent.Entity is TEntity &&
+                                       EqualityComparer<TPrimaryKey>.Default.Equals(id, ((TEntity) ent.Entity).Id));
 
             return entry?.Entity as TEntity;
         }

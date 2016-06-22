@@ -8,6 +8,7 @@ using MovieSheduler.Domain.Infrastructure;
 using MovieSheduler.EntityFramework;
 using MovieSheduler.EntityFramework.Infrastructure;
 using MovieSheduler.EntityFramework.Repositories.SheduleRecord;
+using MovieSheduler.Presentation.Core.Messager;
 
 namespace MovieSheduler.Presentation
 {
@@ -28,10 +29,14 @@ namespace MovieSheduler.Presentation
                 .Where(t => t.Name.EndsWith("Repository"))
                 .AsImplementedInterfaces();
 
-	        builder.RegisterType<MovieShedulerContext>().InstancePerLifetimeScope().As<DbContext>();
-	        builder.RegisterType<MovieShedulerContext>().InstancePerLifetimeScope();
+	        builder.RegisterType<MovieShedulerContext>().InstancePerLifetimeScope()
+                .As<DbContext>()
+                .As<MovieShedulerContext>();
+
 	        builder.RegisterType<UnitOfWorkFactory>().As<IUnitOfWorkFactory>();
 	        builder.RegisterType<ValidationDictionary>().As<IValidationDictionary>();
+	        builder.RegisterType<Notifier>().As<INotifier>().InstancePerRequest();
+	        builder.RegisterType<NotifierFilterAttribute>().AsActionFilterFor<Controller>().PropertiesAutowired();
 
 	        IContainer container = builder.Build();
 	        DependencyResolver.SetResolver(new AutofacDependencyResolver(container));

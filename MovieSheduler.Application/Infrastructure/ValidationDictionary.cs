@@ -5,17 +5,19 @@ namespace MovieSheduler.Application.Infrastructure
 {
     public class ValidationDictionary : IValidationDictionary
     {
-        private readonly List<string> _errors; 
+        private readonly IDictionary<string,string> _errors;
 
         public ValidationDictionary()
         {
-            _errors = new List<string>();
+            _errors =new Dictionary<string, string>();
         }
-        public void AddError(string errorMessage)
+        public bool IsValid => !_errors.Any();
+
+        public void AddError(string key, string errorMessage)
         {
-            _errors.Add(errorMessage);
+            _errors.Add(key, errorMessage);
         }
 
-        public bool IsValid => !_errors.Any();
+        public IDictionary<string, string> Errors => _errors;
     }
 }

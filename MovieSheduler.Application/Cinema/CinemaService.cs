@@ -12,8 +12,8 @@ namespace MovieSheduler.Application.Cinema
     {
         private readonly ICinemaRepository _cinemaRepository;
 
-        public CinemaService(ICinemaRepository cinemaRepository, IUnitOfWorkFactory unitOfWorkFactory,IValidationDictionary validationDictionary) 
-            : base(unitOfWorkFactory,validationDictionary)
+        public CinemaService(ICinemaRepository cinemaRepository, IUnitOfWorkFactory unitOfWorkFactory, IValidationDictionary validationDictionary)
+            : base(unitOfWorkFactory, validationDictionary)
         {
             _cinemaRepository = cinemaRepository;
         }
@@ -27,6 +27,11 @@ namespace MovieSheduler.Application.Cinema
                     Cinemas = Mapper.Map<IReadOnlyCollection<CinemaDto>>(await _cinemaRepository.GetAllCinemaAsync())
                 };
             }
+        }
+
+        public async Task<CinemaDto> GetCinemaById(int cinemaId)
+        {
+            return Mapper.Map<CinemaDto>(await _cinemaRepository.GetByIdAsync(cinemaId));
         }
     }
 }

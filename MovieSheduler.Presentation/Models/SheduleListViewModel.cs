@@ -1,20 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Web.Mvc;
 using MovieSheduler.Application.SheduleRecord.Dtos;
 
 namespace MovieSheduler.Presentation.Models
 {
     public class SheduleListViewModel
     {
-        public SheduleListViewModel(DateTime date, IReadOnlyCollection<SheduleRecordDto> sheduleRecords)
+        public SheduleListViewModel(DateTime date, IReadOnlyCollection<SheduleRecordDto> sheduleRecords,IReadOnlyCollection<DateTime> availableDates)
         {
             Date = date;
             Cinemas = GroupSheduleList(sheduleRecords);
+            AvailableDates = new SelectList(availableDates.Select(d => d.ToShortDateString()), date.ToShortDateString());//.Where(d => d != date)
         }
 
-        public DateTime Date { get; set; }
-        public IReadOnlyCollection<Cinema> Cinemas { get; set; }
+        public DateTime Date { get;}
+        public IReadOnlyCollection<Cinema> Cinemas { get; }
+        public SelectList AvailableDates { get; }
 
         private IReadOnlyCollection<Cinema> GroupSheduleList(IReadOnlyCollection<SheduleRecordDto> sheduleRecords)
         {

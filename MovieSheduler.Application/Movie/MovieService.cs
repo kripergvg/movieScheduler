@@ -28,5 +28,13 @@ namespace MovieSheduler.Application.Movie
                 };
             }
         }
+
+        public async Task<MovieDto> GetMovieById(int movieId)
+        {
+            using (UnitOfWorkFactory.Create())
+            {
+                return Mapper.Map<MovieDto>(await _movieRepository.GetByIdAsync(movieId));
+            }
+        }
     }
 }

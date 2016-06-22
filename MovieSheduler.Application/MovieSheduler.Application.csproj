@@ -59,7 +59,11 @@
     <Compile Include="Movie\MovieService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SheduleRecord\Dtos\AddRecordInput.cs" />
+    <Compile Include="SheduleRecord\Dtos\DeleteRecordsInput.cs" />
+    <Compile Include="SheduleRecord\Dtos\EditRecordInput.cs" />
+    <Compile Include="SheduleRecord\Dtos\GetSeansonsInput.cs" />
     <Compile Include="SheduleRecord\Dtos\GetSheduleByDateOutput.cs" />
+    <Compile Include="SheduleRecord\Dtos\RecordExistInput.cs" />
     <Compile Include="SheduleRecord\Dtos\SheduleRecordDto.cs" />
     <Compile Include="SheduleRecord\ISheduleRecordService.cs" />
     <Compile Include="SheduleRecord\SheduleRecordService.cs" />

@@ -3,7 +3,7 @@
                         <div class=\"input-group time-item\">\
                             <input type=\"text\" class=\"form-control\" name=\"TimeList\">\
                             <div class=\"input-group-btn\">\
-                                <button type=\"button\" class=\"btn btn-danger\" data-time-list-remove aria-label=\"Help\">\
+                                <button type=\"button\" class=\"btn btn-info\" data-time-list-remove aria-label=\"Help\">\
                                     <span class=\"glyphicon glyphicon-trash\" aria-hidden=\"true\"></span>\
                                 </button>\
                             </div>\

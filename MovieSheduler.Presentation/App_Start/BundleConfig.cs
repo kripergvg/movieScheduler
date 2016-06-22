@@ -22,11 +22,13 @@ namespace MovieSheduler.Presentation
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js",
                       "~/Scripts/bootstrap-datepicker.js",
-                      "~/Scripts/initializeDatepicker.js",
-                      "~/Scripts/bootstrap-datepicker.ru.min.js"));
+                      "~/Scripts/initialize-datepicker.js",
+                      "~/Scripts/bootstrap-datepicker.ru.min.js",
+                      "~/Scripts/modal.js"));
 
-            bundles.Add(new ScriptBundle("~/bundles/timeList").Include(
-                "~/Scripts/timeList.js"));
+            bundles.Add(new ScriptBundle("~/bundles/shedule-records").Include(
+                "~/Scripts/time-list.js",
+                "~/Scripts/record-delete.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",

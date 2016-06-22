@@ -6,5 +6,6 @@ namespace MovieSheduler.Application.Cinema
     public interface ICinemaService
     {
         Task<GetAllCinemaOutput> GetAllCinema();
+        Task<CinemaDto> GetCinemaById(int cinemaId);
     }
 }

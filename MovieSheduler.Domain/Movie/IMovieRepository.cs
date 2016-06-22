@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using MovieSheduler.Domain.Infrastructure;
 
 namespace MovieSheduler.Domain.Movie
 {
-    public interface IMovieRepository
+    public interface IMovieRepository : IRepository<Movie, int>
     {
         Task<IReadOnlyCollection<Movie>> GetAllMoviesAsync();
     }

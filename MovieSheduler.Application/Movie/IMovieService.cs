@@ -6,5 +6,6 @@ namespace MovieSheduler.Application.Movie
     public interface IMovieService
     {
         Task<GetAllMoviesOutput> GetAllMovies();
+        Task<MovieDto> GetMovieById(int movieId);
     }
 }

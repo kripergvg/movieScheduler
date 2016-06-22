@@ -6,60 +6,83 @@
 
 <h2>Добавление раписания</h2>
 
-@using (Html.BeginForm("Add", "Shedule", FormMethod.Post, new {@class = "form-horizontal", role = "form", data_validate_hidden = true}))
+@using (Html.BeginForm("Add", "Shedule", FormMethod.Post, new { @class = "form-horizontal", role = "form", data_validate_hidden = true }))
 {
     @Html.AntiForgeryToken()
-    <hr/>
-    @Html.ValidationSummary("", new {@class = "text-danger"})
+    <hr />
+    @Html.ValidationSummary("", new { @class = "text-danger" })
     <div class="form-group">
-        @Html.LabelFor(m => m.CinemaId, new {@class = "col-md-2 control-label"})
+        @Html.LabelFor(m => m.CinemaId, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
-            @Html.DropDownListFor(m => m.CinemaId, Model.Cinemas, "Не выбрано", new {@class = "form-control"})
+            @Html.DropDownListFor(m => m.CinemaId, Model.Cinemas, "Не выбрано", new { @class = "form-control" })
         </div>
     </div>
     <div class="form-group">
-        @Html.LabelFor(m => m.MovieId, new {@class = "col-md-2 control-label"})
+        @Html.LabelFor(m => m.MovieId, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
-            @Html.DropDownListFor(m => m.MovieId, Model.Movies, "Не выбрано", new {@class = "form-control"})
+            @Html.DropDownListFor(m => m.MovieId, Model.Movies, "Не выбрано", new { @class = "form-control" })
         </div>
     </div>
     <div class="form-group">
-        @Html.LabelFor(m => m.Date, new {@class = "col-md-2 control-label"})
+        @Html.LabelFor(m => m.Date, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
             @*<input type="text" value="02-16-2012" data-datepicker>*@
-            <div data-datepicker data-hidden-field="Date"></div>
-            <input data-val="true" data-val-required="Нужно выбрать дату" name="Date" id="Date" type="hidden">
+            @*@(Model.Date != default(DateTime) ? Model.Date.Day + "/" + Model.Date.Month + "/" + Model.Date.Year : "")*@
+            <div data-datepicker data-hidden-field="Date" data-date="@(Model.Date!=default(DateTime)?Model.Date.Day+"/"+Model.Date.Month+"/"+Model.Date.Year:"")"></div>
+            <input data-val="true" data-val-required="Нужно выбрать дату" name="Date" id="Date" value="@(Model.Date!=default(DateTime)?Model.Date.ToString():"")" type="hidden">
         </div>
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(m => m.TimeList, new {@class = "col-md-2 control-label"})
+        @Html.LabelFor(m => m.TimeList, new { @class = "col-md-2 control-label" })
         <div class="col-md-3">
             <div data-time-list-container class="timeListContainer">
-                <div data-time-list-item>
-                    <div class="input-group time-item">
-                        <input type="text" class="form-control" data-val-required="Нужно заполнить время" data-val="true" data-val-regex="Время должно быть в формате 00:00" data-val-regex-pattern="^(?:[01]?[0-9]|2[0-3]):[0-5][0-9]$" name="TimeList">
-                        <div class="input-group-btn">
-                            <button type="button" class="btn btn-danger" data-time-list-remove aria-label="Help">
-                                <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-                            </button>
+                @if (Model.TimeList.Any())
+                {
+                    foreach (var time in Model.TimeList)
+                    {
+                        <div data-time-list-item>
+                            <div class="input-group time-item">
+                                <input type="text" class="form-control" data-val-required="Нужно заполнить время" data-val="true" value="@time.Hours.ToString("00"):@time.Minutes.ToString("00")" data-val-regex="Время должно быть в формате 00:00" data-val-regex-pattern="^(?:[01]?[0-9]|2[0-3]):[0-5][0-9]$" name="TimeList">
+                                <div class="input-group-btn">
+                                    <button type="button" class="btn btn-info" data-time-list-remove aria-label="Help">
+                                        <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                                    </button>
+                                </div>
+                            </div>
+                            <span class="field-validation-valid text-danger" data-valmsg-for="TimeList" data-valmsg-replace="true"></span>
                         </div>
+                    }
+                }
+                else
+                {
+                    <div data-time-list-item>
+                        <div class="input-group time-item">
+                            <input type="text" class="form-control" data-val-required="Нужно заполнить время" data-val="true" data-val-regex="Время должно быть в формате 00:00" data-val-regex-pattern="^(?:[01]?[0-9]|2[0-3]):[0-5][0-9]$" name="TimeList">
+                            <div class="input-group-btn">
+                                <button type="button" class="btn btn-info" data-time-list-remove aria-label="Help">
+                                    <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                                </button>
+                            </div>
+                        </div>
+                        <span class="field-validation-valid text-danger" data-valmsg-for="TimeList" data-valmsg-replace="true"></span>
                     </div>
-                    <span class="field-validation-valid text-danger" data-valmsg-for="TimeList" data-valmsg-replace="true"></span>
-                </div>
+                }
             </div>
         </div>
     </div>
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
-            <button type="button" class="btn btn-success"  data-time-list-add>
+            <button type="button" class="btn btn-primary" data-time-list-add>
                 <span class="glyphicon glyphicon-plus add-btn" aria-hidden="true"></span> Добавить
             </button>
         </div>
     </div>
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
-            <input type="submit" class="btn btn-default" value="Сохранить"/>
+            <input type="submit" class="btn btn-success" value="Сохранить"/>
+            <a href="@Url.Action("Index")"  class="btn btn-warning">Отмена</a>
+            @*<input type="submit" class="btn btn-warning" value="Отмена" />*@
         </div>
     </div>
 }
