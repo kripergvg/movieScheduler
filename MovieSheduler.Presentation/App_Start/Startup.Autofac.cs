@@ -1,4 +1,5 @@
 ﻿using System.Data.Entity;
+using System.Web;
 using System.Web.Mvc;
 using Autofac;
 using Autofac.Integration.Mvc;
@@ -8,6 +9,7 @@ using MovieSheduler.Domain.Infrastructure;
 using MovieSheduler.EntityFramework;
 using MovieSheduler.EntityFramework.Infrastructure;
 using MovieSheduler.EntityFramework.Repositories.SheduleRecord;
+using MovieSheduler.Presentation.Controllers;
 using MovieSheduler.Presentation.Core.Messager;
 
 namespace MovieSheduler.Presentation
@@ -17,7 +19,10 @@ namespace MovieSheduler.Presentation
 	    public IContainer ConfigureAutofac()
 	    {
 	        var builder=new ContainerBuilder();
-	        builder.RegisterControllers(typeof (MvcApplication).Assembly);
+
+            builder.Register(c => new HttpContextWrapper(HttpContext.Current)).As<HttpContextBase>().InstancePerRequest();
+
+            builder.RegisterControllers(typeof (MvcApplication).Assembly);
 
             //TODO коммент
 	        builder.RegisterAssemblyTypes(typeof (SheduleRecordService).Assembly)
@@ -36,7 +41,8 @@ namespace MovieSheduler.Presentation
 	        builder.RegisterType<UnitOfWorkFactory>().As<IUnitOfWorkFactory>();
 	        builder.RegisterType<ValidationDictionary>().As<IValidationDictionary>();
 	        builder.RegisterType<Notifier>().As<INotifier>().InstancePerRequest();
-	        builder.RegisterType<NotifierFilterAttribute>().AsActionFilterFor<Controller>().PropertiesAutowired();
+	        builder.Register(b => new NotifierFilterAttribute(b.Resolve<INotifier>())).AsActionFilterFor<Controller>().InstancePerRequest();
+            builder.RegisterFilterProvider();
 
 	        IContainer container = builder.Build();
 	        DependencyResolver.SetResolver(new AutofacDependencyResolver(container));

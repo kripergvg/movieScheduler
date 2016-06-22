@@ -80,13 +80,14 @@ namespace MovieSheduler.Application.SheduleRecord
             }
         }
 
-        public async Task<IReadOnlyCollection<TimeSpan>> GetSeansons(GetSeansonsInput seansonsInput)
+        public async Task<IReadOnlyCollection<TimeSpan>> GetSeansList(GetSeansonsInput seansonsInput)
         {
             using (UnitOfWorkFactory.Create())
             {
-                return (await _sheduleRecordRepository.GetRecords(seansonsInput.CinemaId, seansonsInput.MovieId, seansonsInput.Date)).Select(r => new TimeSpan(r.Date.Hour, r.Date.Minute, r.Date.Second))
-                .ToList()
-                .AsReadOnly();
+                return (await _sheduleRecordRepository.GetRecords(seansonsInput.CinemaId, seansonsInput.MovieId, seansonsInput.Date))
+                    .Select(r => new TimeSpan(r.Date.Hour, r.Date.Minute, r.Date.Second))
+                    .ToList()
+                    .AsReadOnly();
             }
         }
 

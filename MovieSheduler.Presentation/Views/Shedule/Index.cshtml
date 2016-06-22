@@ -21,7 +21,7 @@
 
 
 <a class="btn btn-default" href="@Url.Action("Add")">Добавить</a>
-<table>
+<table class="table">
     <thead>
         <tr>
             <th>
@@ -39,7 +39,7 @@
     <tbody>
         @foreach (var cinema in Model.Cinemas)
         {
-            <tr>
+            <tr class="success">
                 <td>@cinema.Name</td>
                 <td></td>
                 <td></td>

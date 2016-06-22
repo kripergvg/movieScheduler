@@ -1,4 +1,4 @@
-﻿namespace MovieSheduler.Presentation.Core
+﻿namespace MovieSheduler.Presentation.Core.Messager
 {
     public enum MessageType
     {

@@ -12,7 +12,7 @@ namespace MovieSheduler.Application.SheduleRecord
         Task<DateTime?> GetFirstAvailableDate();
         IValidationDictionary AddRecord(AddRecordInput record);
         Task<IReadOnlyCollection<DateTime>> GetAvailableDates();
-        Task<IReadOnlyCollection<TimeSpan>> GetSeansons(GetSeansonsInput seansonsInput);
+        Task<IReadOnlyCollection<TimeSpan>> GetSeansList(GetSeansonsInput seansonsInput);
         Task<IValidationDictionary> DeleteRecords(DeleteRecordsInput deleteRecordsInput);
         Task<bool> RecordExist(RecordExistInput recordExistInput);
         Task<ValidationDictionary> EditRecord(EditRecordInput editRecordInput);

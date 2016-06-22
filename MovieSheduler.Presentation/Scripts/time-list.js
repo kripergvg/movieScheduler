@@ -9,9 +9,7 @@
                             </div>\
                         </div>\
                     </div>";
-
-    var errorTimeTemplate = "<span class=\"text-danger field-validation-error\"><span>Нужно заполнить время</span></span>";
-
+    
     $(".timeListContainer").on("click", "[data-time-list-remove]", function () {
         $(this).parents(".input-group").remove();
     });

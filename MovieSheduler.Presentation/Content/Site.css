@@ -27,3 +27,7 @@ textarea {
 .inline {
     display: inline;
 }
+
+.message-container {
+    margin-top: 10px;
+}

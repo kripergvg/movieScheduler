@@ -11,6 +11,7 @@ using MovieSheduler.Application.SheduleRecord;
 using MovieSheduler.Application.SheduleRecord.Dtos;
 using MovieSheduler.Presentation.Models;
 using MovieSheduler.Presentation.Core;
+using MovieSheduler.Presentation.Core.Messager;
 using MovieSheduler.Presentation.Core.ModelBinder;
 
 namespace MovieSheduler.Presentation.Controllers
@@ -20,12 +21,15 @@ namespace MovieSheduler.Presentation.Controllers
         private readonly ISheduleRecordService _sheduleRecordService;
         private readonly IMovieService _movieService;
         private readonly ICinemaService _cinemaService;
+        private readonly INotifier _notifier;
 
-        public SheduleController(ISheduleRecordService sheduleRecordService, IMovieService movieService, ICinemaService cinemaService)
+        public SheduleController(ISheduleRecordService sheduleRecordService, IMovieService movieService, ICinemaService cinemaService,
+            INotifier notifier)
         {
             _sheduleRecordService = sheduleRecordService;
             _movieService = movieService;
             _cinemaService = cinemaService;
+            _notifier = notifier;
         }
 
         // GET: Shedule
@@ -64,10 +68,11 @@ namespace MovieSheduler.Presentation.Controllers
                 }
                 if (ModelState.IsValid)
                 {
-                    var result = _sheduleRecordService.AddRecord(new AddRecordInput(record.MovieId, record.CinemaId, record.TimeList));
+                    var result = _sheduleRecordService.AddRecord(new AddRecordInput(record.MovieId, record.CinemaId, record.TimeList, record.Date));
                     if (result.IsValid)
                     {
-                        return RedirectToAction("Index");
+                        _notifier.Success("Раписание успешно добавлено!");
+                        return RedirectToAction("Index", new {date = record.Date.ToShortDateString()});
                     }
                     ModelState.AddErrorsFromValidationDictionary(result);
                 }
@@ -77,6 +82,7 @@ namespace MovieSheduler.Presentation.Controllers
                 var model = new AddSheduleRecordViewModel(movies.Movies, cinemas.Cinemas, record);
                 return View(model);
             }
+            _notifier.Error("При добавление произошла ошибка!");
             return RedirectToAction("Add");
         }
 
@@ -113,7 +119,8 @@ namespace MovieSheduler.Presentation.Controllers
                         await _sheduleRecordService.EditRecord(new EditRecordInput(editRecord.CinemaId, editRecord.MovieId, editRecord.Date, editRecord.TimeList));
                     if (result.IsValid)
                     {
-                        return RedirectToAction("Index");
+                        _notifier.Success("Раписание успешно отредактировано!");
+                        return RedirectToAction("Index", new {date = editRecord.Date.ToShortDateString()});
                     }
                     ModelState.AddErrorsFromValidationDictionary(result);
                 }
@@ -123,8 +130,8 @@ namespace MovieSheduler.Presentation.Controllers
                 var model = new EditSheduleRecordViewModel(cinema, movie, editRecord.Date, editRecord.TimeList);
                 return View(model);
             }
-
-            return RedirectToAction("Edit", new { editRecord.CinemaId, editRecord.MovieId, editRecord.Date });
+            _notifier.Error("При редактирование произошла ошибка!");
+            return RedirectToAction("Edit", new { editRecord.CinemaId, editRecord.MovieId, date = editRecord.Date.ToShortDateString() });
         }
 
         [HttpPost]
@@ -139,6 +146,7 @@ namespace MovieSheduler.Presentation.Controllers
             var result = await _sheduleRecordService.DeleteRecords(new DeleteRecordsInput(cinemaId, movieId, date));
             if (result.IsValid)
             {
+                _notifier.Success("Раписание успешно удалено!");
                 return RedirectToAction("Index");
             }
 
@@ -151,7 +159,7 @@ namespace MovieSheduler.Presentation.Controllers
         {
             MovieDto movie = await _movieService.GetMovieById(movieId);
             CinemaDto cinema = await _cinemaService.GetCinemaById(cinemaId);
-            IReadOnlyCollection<TimeSpan> seansons = await _sheduleRecordService.GetSeansons(new GetSeansonsInput(movieId, cinemaId, date));
+            IReadOnlyCollection<TimeSpan> seansons = await _sheduleRecordService.GetSeansList(new GetSeansonsInput(movieId, cinemaId, date));
 
             var model = new EditSheduleRecordViewModel(cinema, movie, date, seansons);
             return model;

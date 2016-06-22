@@ -33,7 +33,7 @@ namespace MovieSheduler.Presentation.Core.Messager
                 return null;
             }
 
-            var messages = (IEnumerable<Message>)context.Controller.TempData[Constants.TEMP_DATA_KEY];
+            var messages = (IEnumerable<IMessage>)context.Controller.TempData[Constants.TEMP_DATA_KEY];
             var builder = new StringBuilder();
             foreach (var message in messages)
             {

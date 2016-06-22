@@ -4,7 +4,7 @@ namespace MovieSheduler.Presentation.Core.Messager
 {
     public interface INotifier
     {
-        IList<Message> Messages { get; }
+        IList<IMessage> Messages { get; }
         void AddMessage(MessageType severity, string text, params object[] format);
     }
 }

@@ -18,18 +18,18 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Application name", "Index", "Shedule", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Расписание кино", "Index", "Shedule", new { area = "" }, new { @class = "navbar-brand" })
             </div>
         </div>
     </div>
     <div class="container body-content">
-        <div class="container">
+        <div class="container message-container">
             @Html.ViewContext.DisplayMessages()
         </div>
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - Распиание кино</p>
+            <p>&copy; @DateTime.Now.Year - Расписание кино</p>
         </footer>
     </div>
 

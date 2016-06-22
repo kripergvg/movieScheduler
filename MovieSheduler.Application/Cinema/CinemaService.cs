@@ -31,7 +31,10 @@ namespace MovieSheduler.Application.Cinema
 
         public async Task<CinemaDto> GetCinemaById(int cinemaId)
         {
-            return Mapper.Map<CinemaDto>(await _cinemaRepository.GetByIdAsync(cinemaId));
+            using (UnitOfWorkFactory.Create())
+            {
+                return Mapper.Map<CinemaDto>(await _cinemaRepository.GetByIdAsync(cinemaId));
+            }           
         }
     }
 }

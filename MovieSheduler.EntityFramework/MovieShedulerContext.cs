@@ -1,3 +1,4 @@
+using System.Data.Common;
 using System.Data.Entity;
 using MovieSheduler.Domain.Cinema;
 using MovieSheduler.Domain.Movie;
@@ -10,6 +11,11 @@ namespace MovieSheduler.EntityFramework
     {
         public MovieShedulerContext()
             : base("name=MovieShedulerContext")
+        {
+        }
+
+        public MovieShedulerContext(DbConnection connection)
+            : base(connection, true)
         {
         }
 

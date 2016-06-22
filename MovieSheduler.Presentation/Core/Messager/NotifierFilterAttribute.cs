@@ -5,6 +5,11 @@ namespace MovieSheduler.Presentation.Core.Messager
 {
     public class NotifierFilterAttribute : ActionFilterAttribute
     {
+        public NotifierFilterAttribute(INotifier notifier)
+        {
+            Notifier = notifier;
+        }
+
         public INotifier Notifier { get; set; }
 
         public override void OnActionExecuted(ActionExecutedContext filterContext)
