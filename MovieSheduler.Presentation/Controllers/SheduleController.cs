@@ -61,6 +61,11 @@ namespace MovieSheduler.Presentation.Controllers
         {
             if (ModelState.IsValid)
             {
+                if (!await _sheduleRecordService.RecordExist(new RecordExistInput(record.MovieId, record.CinemaId, record.Date)))
+                {
+                    return HttpNotFound();
+                }
+
                 //коммент
                 if (record.TimeList.GroupBy(t => t).Any(tg => tg.Count() > 1))
                 {
@@ -72,7 +77,7 @@ namespace MovieSheduler.Presentation.Controllers
                     if (result.IsValid)
                     {
                         _notifier.Success("Раписание успешно добавлено!");
-                        return RedirectToAction("Index", new {date = record.Date.ToShortDateString()});
+                        return RedirectToAction("Index", new { date = record.Date.ToShortDateString() });
                     }
                     ModelState.AddErrorsFromValidationDictionary(result);
                 }
@@ -108,7 +113,7 @@ namespace MovieSheduler.Presentation.Controllers
                     return HttpNotFound();
                 }
 
-                if (editRecord.TimeList.GroupBy(t => t).Any(tg => tg.Count() > 1))
+                if (editRecord.SeansList.GroupBy(t => t).Any(tg => tg.Count() > 1))
                 {
                     ModelState.AddModelError("time", "Нельзя выбирать несколько одинаковых сеансов");
                 }
@@ -116,18 +121,18 @@ namespace MovieSheduler.Presentation.Controllers
                 if (ModelState.IsValid)
                 {
                     var result =
-                        await _sheduleRecordService.EditRecord(new EditRecordInput(editRecord.CinemaId, editRecord.MovieId, editRecord.Date, editRecord.TimeList));
+                        await _sheduleRecordService.EditRecord(new EditRecordInput(editRecord.CinemaId, editRecord.MovieId, editRecord.Date, editRecord.SeansList));
                     if (result.IsValid)
                     {
                         _notifier.Success("Раписание успешно отредактировано!");
-                        return RedirectToAction("Index", new {date = editRecord.Date.ToShortDateString()});
+                        return RedirectToAction("Index", new { date = editRecord.Date.ToShortDateString() });
                     }
                     ModelState.AddErrorsFromValidationDictionary(result);
                 }
 
                 MovieDto movie = await _movieService.GetMovieById(editRecord.MovieId);
                 CinemaDto cinema = await _cinemaService.GetCinemaById(editRecord.CinemaId);
-                var model = new EditSheduleRecordViewModel(cinema, movie, editRecord.Date, editRecord.TimeList);
+                var model = new EditSheduleRecordViewModel(cinema, movie, editRecord.Date, editRecord.SeansList);
                 return View(model);
             }
             _notifier.Error("При редактирование произошла ошибка!");
@@ -159,9 +164,9 @@ namespace MovieSheduler.Presentation.Controllers
         {
             MovieDto movie = await _movieService.GetMovieById(movieId);
             CinemaDto cinema = await _cinemaService.GetCinemaById(cinemaId);
-            IReadOnlyCollection<TimeSpan> seansons = await _sheduleRecordService.GetSeansList(new GetSeansonsInput(movieId, cinemaId, date));
+            IReadOnlyCollection<TimeSpan> seansList = await _sheduleRecordService.GetSeansList(new GetSeansonsInput(movieId, cinemaId, date));
 
-            var model = new EditSheduleRecordViewModel(cinema, movie, date, seansons);
+            var model = new EditSheduleRecordViewModel(cinema, movie, date, seansList);
             return model;
         }
     }

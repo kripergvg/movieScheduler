@@ -6,24 +6,24 @@ namespace MovieSheduler.Presentation.Core.Messager
 {
     public static class NotifierExtensions
     {
-        public static void Error(this INotifier notifier, string text, params object[] format)
+        public static void Error(this INotifier notifier, string text)
         {
-            notifier.AddMessage(MessageType.Danger, text, format);
+            notifier.AddMessage(MessageType.Danger, text);
         }
 
-        public static void Info(this INotifier notifier, string text, params object[] format)
+        public static void Info(this INotifier notifier, string text)
         {
-            notifier.AddMessage(MessageType.Info, text, format);
+            notifier.AddMessage(MessageType.Info, text);
         }
 
-        public static void Success(this INotifier notifier, string text, params object[] format)
+        public static void Success(this INotifier notifier, string text)
         {
-            notifier.AddMessage(MessageType.Success, text, format);
+            notifier.AddMessage(MessageType.Success, text);
         }
 
-        public static void Warning(this INotifier notifier, string text, params object[] format)
+        public static void Warning(this INotifier notifier, string text)
         {
-            notifier.AddMessage(MessageType.Warning, text, format);
+            notifier.AddMessage(MessageType.Warning, text);
         }
 
         public static MvcHtmlString DisplayMessages(this ViewContext context)

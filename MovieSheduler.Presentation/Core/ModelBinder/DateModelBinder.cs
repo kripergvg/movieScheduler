@@ -11,14 +11,13 @@ namespace MovieSheduler.Presentation.Core.ModelBinder
             {
                 throw new ArgumentNullException(nameof(bindingContext));
             }
-            //object date;
-            //controllerContext.HttpContext.Request.RequestContext.RouteData.Values.TryGetValue(bindingContext.ModelName, out date);
 
             //TODO ПЕРЕДЕЛАТь
             ValueProviderResult valueResult = bindingContext.ValueProvider.GetValue(bindingContext.ModelName);
             if (valueResult != null)
             {
                 return Convert.ToDateTime(valueResult.AttemptedValue);
+                
             }
             return null;
         }

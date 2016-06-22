@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.ComponentModel.DataAnnotations;
 namespace MovieSheduler.Presentation.Core.ValidationAttributes
 {
@@ -12,7 +13,16 @@ namespace MovieSheduler.Presentation.Core.ValidationAttributes
             {
                 var enumerator = list.GetEnumerator();
                 enumerator.MoveNext();
-                return enumerator.Current != null;
+                try
+                {
+                    var current = enumerator.Current;
+                    return true;
+                }
+                catch (InvalidOperationException)
+                {
+                    return false;
+                }
+                
             }
             return false;
         }

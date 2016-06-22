@@ -17,6 +17,6 @@ namespace MovieSheduler.Presentation.Models
         public DateTime Date { get; set; }
 
         [Display(Name = "Сеансы")]
-        public List<TimeSpan> TimeList { get; set; } = new List<TimeSpan>();
+        public List<TimeSpan> SeansList { get; set; } = new List<TimeSpan>();
     }
 }

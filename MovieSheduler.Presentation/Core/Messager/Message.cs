@@ -5,13 +5,18 @@ namespace MovieSheduler.Presentation.Core.Messager
 {
     public class Message: IMessage
     {
+        public Message(MessageType severity, string text)
+        {
+            Severity = severity;
+            Text = text;
+        }
+
         public MessageType Severity { get; set; }
 
         public string Text { get; set; }
 
         public string Generate()
-        {
-            var isDismissable = Severity != MessageType.Danger;
+        {           
             if (Severity == MessageType.None)
             {
                 Severity = MessageType.Info;
@@ -24,6 +29,8 @@ namespace MovieSheduler.Presentation.Core.Messager
 
             var spanTag = new TagBuilder("span");
             spanTag.MergeAttribute("id", "MessageContent");
+
+            var isDismissable = Severity != MessageType.Danger;
 
             if (isDismissable)
             {

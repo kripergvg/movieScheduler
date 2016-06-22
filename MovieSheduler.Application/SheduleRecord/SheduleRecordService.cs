@@ -114,7 +114,7 @@ namespace MovieSheduler.Application.SheduleRecord
             }
         }
 
-        public async Task<ValidationDictionary> EditRecord(EditRecordInput editRecordInput)
+        public async Task<IValidationDictionary> EditRecord(EditRecordInput editRecordInput)
         {
             using (var unitOfWork = UnitOfWorkFactory.Create())
             {

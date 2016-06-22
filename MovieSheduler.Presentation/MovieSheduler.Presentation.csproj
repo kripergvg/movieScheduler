@@ -202,7 +202,6 @@
     <Compile Include="Controllers\SheduleController.cs" />
     <Compile Include="Core\ModelBinder\DateModelBinder.cs" />
     <Compile Include="Core\ModelStateExtensions.cs" />
-    <Compile Include="Core\ValidationAttributes\RegexItemAttribute.cs" />
     <Compile Include="Core\ValidationAttributes\RequiredItem.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

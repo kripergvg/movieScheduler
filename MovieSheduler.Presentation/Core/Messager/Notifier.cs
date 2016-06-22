@@ -6,9 +6,9 @@ namespace MovieSheduler.Presentation.Core.Messager
     {
         public IList<IMessage> Messages { get; } = new List<IMessage>();
 
-        public void AddMessage(MessageType severity, string text, params object[] format)
+        public void AddMessage(MessageType severity, string text)
         {
-            Messages.Add(new Message { Severity = severity, Text = string.Format(text, format) });
+            Messages.Add(new Message(severity, text));
         }
     }
 }

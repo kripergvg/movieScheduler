@@ -9,18 +9,18 @@ namespace MovieSheduler.Presentation.Models
 {
     public class EditSheduleRecordViewModel : EditSheduleRecord
     {
-        public EditSheduleRecordViewModel(CinemaDto cinema, MovieDto movie,DateTime date, IReadOnlyCollection<TimeSpan> timeList,  EditSheduleRecord baseModel = null)
+        public EditSheduleRecordViewModel(CinemaDto cinema, MovieDto movie, DateTime date, IReadOnlyCollection<TimeSpan> seansList, EditSheduleRecord baseModel = null)
         {
             CinemaName = cinema.Name;
             MovieName = movie.Name;
-            TimeList = timeList.ToList();
+            SeansList = seansList.ToList();
             CinemaId = cinema.Id;
             MovieId = movie.Id;
             Date = date;
 
             if (baseModel != null)
-            {                
-                TimeList = baseModel.TimeList;
+            {
+                SeansList = baseModel.SeansList;
             }
         }
 

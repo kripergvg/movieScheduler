@@ -15,6 +15,6 @@ namespace MovieSheduler.Application.SheduleRecord
         Task<IReadOnlyCollection<TimeSpan>> GetSeansList(GetSeansonsInput seansonsInput);
         Task<IValidationDictionary> DeleteRecords(DeleteRecordsInput deleteRecordsInput);
         Task<bool> RecordExist(RecordExistInput recordExistInput);
-        Task<ValidationDictionary> EditRecord(EditRecordInput editRecordInput);
+        Task<IValidationDictionary> EditRecord(EditRecordInput editRecordInput);
     }
 }
