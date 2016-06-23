@@ -4,6 +4,7 @@ using MovieSheduler.Domain.Cinema;
 using MovieSheduler.Domain.Movie;
 using MovieSheduler.Domain.SheduleRecord;
 using MovieSheduler.EntityFramework.Configuration;
+using MovieSheduler.EntityFramework.Migrations;
 
 namespace MovieSheduler.EntityFramework
 {
@@ -21,7 +22,10 @@ namespace MovieSheduler.EntityFramework
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            Database.SetInitializer(new CreateMovieSchedulerDatabseIfNotExist());
             modelBuilder.Configurations.Add(new SheduleRecordConfiguration());
+            modelBuilder.Configurations.Add(new MovieConfiguration());
+            modelBuilder.Configurations.Add(new CinemaConfiguration());
 
             base.OnModelCreating(modelBuilder);
         }

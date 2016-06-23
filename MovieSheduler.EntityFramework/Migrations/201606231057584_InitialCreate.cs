@@ -11,7 +11,7 @@ namespace MovieSheduler.EntityFramework.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        Name = c.String(),
+                        Name = c.String(nullable: false, maxLength: 255),
                     })
                 .PrimaryKey(t => t.Id);
             
@@ -20,7 +20,7 @@ namespace MovieSheduler.EntityFramework.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        Name = c.String(),
+                        Name = c.String(nullable: false, maxLength: 255),
                     })
                 .PrimaryKey(t => t.Id);
             
@@ -37,6 +37,7 @@ namespace MovieSheduler.EntityFramework.Migrations
                 .ForeignKey("dbo.Cinemas", t => t.CinemaId, cascadeDelete: true)
                 .ForeignKey("dbo.Movies", t => t.MovieId, cascadeDelete: true)
                 .Index(t => new { t.CinemaId, t.MovieId, t.Date }, unique: true, name: "IXU_SheduleRecord");
+            
         }
         
         public override void Down()

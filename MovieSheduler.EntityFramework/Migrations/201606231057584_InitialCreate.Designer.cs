@@ -13,7 +13,7 @@ namespace MovieSheduler.EntityFramework.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201606212109431_InitialCreate"; }
+            get { return "201606231057584_InitialCreate"; }
         }
         
         string IMigrationMetadata.Source
