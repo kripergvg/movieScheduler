@@ -1,17 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace MovieSheduler.Domain
+namespace MovieSheduler.Domain.Infrastructure
 {
     public abstract class Entity<TPrimaryKey> : IEntity<TPrimaryKey>
     {
+        /// <summary>
+        /// Id of entity
+        /// </summary>
         public TPrimaryKey Id { get; set; }
 
         /// <summary>
         /// Checks if this entity is transient (it has not an Id).
-        /// 
         /// </summary>
-        /// 
         /// <returns>
         /// True, if this entity is transient
         /// </returns>

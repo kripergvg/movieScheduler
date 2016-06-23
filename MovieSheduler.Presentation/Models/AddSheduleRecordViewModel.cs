@@ -17,7 +17,7 @@ namespace MovieSheduler.Presentation.Models
                 CinemaId = baseModel.CinemaId;
                 Date = baseModel.Date;
                 MovieId = baseModel.MovieId;
-                TimeList = baseModel.TimeList;
+                SeansList = baseModel.SeansList;
             }
         }
 

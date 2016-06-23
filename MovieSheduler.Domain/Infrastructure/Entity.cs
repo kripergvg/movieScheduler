@@ -1,4 +1,4 @@
-﻿namespace MovieSheduler.Domain
+﻿namespace MovieSheduler.Domain.Infrastructure
 {
     public class Entity : Entity<int>
     {

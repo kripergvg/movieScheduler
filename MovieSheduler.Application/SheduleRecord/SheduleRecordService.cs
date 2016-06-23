@@ -53,14 +53,18 @@ namespace MovieSheduler.Application.SheduleRecord
                     Exist = _sheduleRecordRepository.ExistByProperties(r)
                 });
 
+                //if repository have record with same properties
                 var existRecords = checkExistRecords.Where(c => c.Exist);
                 foreach (var existRecord in existRecords)
                 {
+                    //then add errors
                     ValidationDictionary.AddError("time", $"Расписание на {existRecord.Date.ToShortTimeString()} уже существует");
                 }
 
+                //if no errors
                 if (ValidationDictionary.IsValid)
                 {
+                    //then add records
                     _sheduleRecordRepository.AddRecords(records);
                     unitOfWork.SaveChanges();
                 }
@@ -120,7 +124,12 @@ namespace MovieSheduler.Application.SheduleRecord
 
                 IEnumerable<DateTime> editDates = editRecordInput.TimeList.Select(t => editRecordInput.Date.Add(t)).ToList();
 
+                //if repository doesnt contains record
+                //then we need to add record
                 var newDates = editDates.Where(t => !existingDates.Contains(t));
+
+                //if there are records in the repository that we dont have
+                //then we need to delete records
                 var deleteDates = existingDates.Where(t => !editDates.Contains(t));
 
                 foreach (var deleteDate in deleteDates)

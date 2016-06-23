@@ -12,6 +12,7 @@ namespace MovieSheduler.Application.Infrastructure
         {
             _errors =new Dictionary<string, string>();
         }
+
         public bool IsValid => !_errors.Any();
 
         public void AddError(string key, string errorMessage)

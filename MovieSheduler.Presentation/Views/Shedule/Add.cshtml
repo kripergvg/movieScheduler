@@ -34,23 +34,22 @@
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(m => m.TimeList, new { @class = "col-md-2 control-label" })
+        @Html.LabelFor(m => m.SeansList, new { @class = "col-md-2 control-label" })
         <div class="col-md-3">
             <div data-time-list-container class="timeListContainer">
-                @if (Model.TimeList.Any())
+                @if (Model.SeansList.Any())
                 {
-                    foreach (var time in Model.TimeList)
+                    foreach (var time in Model.SeansList)
                     {
                         <div data-time-list-item>
                             <div class="input-group time-item">
-                                <input type="text" class="form-control" value="@time.Hours.ToString("00"):@time.Minutes.ToString("00")"  name="TimeList">
+                                <input type="text" class="form-control" value="@time.Hours.ToString("00"):@time.Minutes.ToString("00")"  name="SeansList">
                                 <div class="input-group-btn">
                                     <button type="button" class="btn btn-info" data-time-list-remove aria-label="Help">
                                         <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
                                     </button>
                                 </div>
                             </div>
-                            <span class="field-validation-valid text-danger" data-valmsg-for="TimeList" data-valmsg-replace="true"></span>
                         </div>
                     }
                 }
@@ -58,14 +57,13 @@
                 {
                     <div data-time-list-item>
                         <div class="input-group time-item">
-                            <input type="text" class="form-control" name="TimeList">
+                            <input type="text" class="form-control" name="SeansList">
                             <div class="input-group-btn">
                                 <button type="button" class="btn btn-info" data-time-list-remove aria-label="Help">
                                     <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
                                 </button>
                             </div>
                         </div>
-                        <span class="field-validation-valid text-danger" data-valmsg-for="TimeList" data-valmsg-replace="true"></span>
                     </div>
                 }
             </div>

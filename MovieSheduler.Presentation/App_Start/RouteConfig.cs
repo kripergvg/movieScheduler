@@ -10,16 +10,16 @@ namespace MovieSheduler.Presentation
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
-               name: "Default",
-               url: "",
-               defaults: new { controller = "Shedule", action = "Index" }
-           );
-
-            routes.MapRoute(
                 name: "CinemaSchedule",
                 url: "cinemaschedule/{action}",
-                defaults: new { controller = "Shedule", action = "Index"}
+                defaults: new { controller = "Shedule", action = "Index" }
             );
+
+            routes.MapRoute(
+                name: "Default",
+                url: "",
+                defaults: new {controller = "Shedule", action = "Index"}
+                );
         }
     }
 }

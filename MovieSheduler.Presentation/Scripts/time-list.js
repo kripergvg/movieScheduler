@@ -1,7 +1,7 @@
 ﻿$(function () {
     var timeItemTemplate = "<div data-time-list-item>\
                         <div class=\"input-group time-item\">\
-                            <input type=\"text\" class=\"form-control\" name=\"TimeList\">\
+                            <input type=\"text\" class=\"form-control\" name=\"SeansList\">\
                             <div class=\"input-group-btn\">\
                                 <button type=\"button\" class=\"btn btn-info\" data-time-list-remove aria-label=\"Help\">\
                                     <span class=\"glyphicon glyphicon-trash\" aria-hidden=\"true\"></span>\

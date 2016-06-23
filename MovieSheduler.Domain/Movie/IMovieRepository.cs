@@ -6,6 +6,10 @@ namespace MovieSheduler.Domain.Movie
 {
     public interface IMovieRepository : IRepository<Movie, int>
     {
+        /// <summary>
+        /// Get all movies async
+        /// </summary>
+        /// <returns>Movies collection</returns>
         Task<IReadOnlyCollection<Movie>> GetAllMoviesAsync();
     }
 }

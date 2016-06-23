@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 using Moq;
@@ -59,7 +57,7 @@ namespace MovieSheduler.Presentation.Tests
             var controller = new SheduleController(sheduleRecordSevice.Object, movieService.Object, cinemaService.Object, notifer.Object);
             var record = new AddSheduleRecord
             {
-                TimeList = new List<TimeSpan>
+                SeansList = new List<TimeSpan>
                 {
                     new TimeSpan(11, 0, 0),
                     new TimeSpan(11, 0, 0)
@@ -92,7 +90,7 @@ namespace MovieSheduler.Presentation.Tests
 
             var record = new AddSheduleRecord
             {
-                TimeList = new List<TimeSpan>
+                SeansList = new List<TimeSpan>
                 {
                     new TimeSpan(11, 0, 0),
                     new TimeSpan(12, 0, 0)

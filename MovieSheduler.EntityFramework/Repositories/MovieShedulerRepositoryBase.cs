@@ -1,4 +1,5 @@
 ﻿using MovieSheduler.Domain;
+using MovieSheduler.Domain.Infrastructure;
 using MovieSheduler.EntityFramework.Infrastructure;
 
 namespace MovieSheduler.EntityFramework.Repositories

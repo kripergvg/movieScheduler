@@ -32,13 +32,23 @@ namespace MovieSheduler.Presentation.Controllers
             _notifier = notifier;
         }
 
-        // GET: Shedule
         public async Task<ActionResult> Index([ModelBinder(typeof(DateModelBinder))] DateTime? date)
         {
-            //TODO поставить коммент
-            DateTime selectedDate = date ?? await _sheduleRecordService.GetFirstAvailableDate() ?? DateTime.Now;
-            GetSheduleByDateOutput shedule = await _sheduleRecordService.GetShedule(selectedDate);
             IReadOnlyCollection<DateTime> availableDates = await _sheduleRecordService.GetAvailableDates();
+
+            DateTime selectedDate;
+            //If have date from user input and it available
+            if (date.HasValue && availableDates.Contains(date.Value))
+            {
+                selectedDate = date.Value;
+            }
+            else
+            {
+                selectedDate = await _sheduleRecordService.GetFirstAvailableDate() ?? DateTime.Now;
+            }
+
+            GetSheduleByDateOutput shedule = await _sheduleRecordService.GetShedule(selectedDate);
+
 
             var model = new SheduleListViewModel(selectedDate, shedule.SheduleRecords, availableDates);
 
@@ -61,19 +71,14 @@ namespace MovieSheduler.Presentation.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (!await _sheduleRecordService.RecordExist(new RecordExistInput(record.MovieId, record.CinemaId, record.Date)))
-                {
-                    return HttpNotFound();
-                }
-
-                //коммент
-                if (record.TimeList.GroupBy(t => t).Any(tg => tg.Count() > 1))
+                //if record have some identical seans
+                if (record.SeansList.GroupBy(t => t).Any(tg => tg.Count() > 1))
                 {
                     ModelState.AddModelError("time", "Нельзя выбирать несколько одинаковых сеансов");
                 }
                 if (ModelState.IsValid)
                 {
-                    var result = _sheduleRecordService.AddRecord(new AddRecordInput(record.MovieId, record.CinemaId, record.TimeList, record.Date));
+                    var result = _sheduleRecordService.AddRecord(new AddRecordInput(record.MovieId, record.CinemaId, record.SeansList, record.Date));
                     if (result.IsValid)
                     {
                         _notifier.Success("Раписание успешно добавлено!");
@@ -87,6 +92,7 @@ namespace MovieSheduler.Presentation.Controllers
                 var model = new AddSheduleRecordViewModel(movies.Movies, cinemas.Cinemas, record);
                 return View(model);
             }
+            //if we are here then critical error rised
             _notifier.Error("При добавление произошла ошибка!");
             return RedirectToAction("Add");
         }
@@ -113,6 +119,7 @@ namespace MovieSheduler.Presentation.Controllers
                     return HttpNotFound();
                 }
 
+                //if record have some identical seans
                 if (editRecord.SeansList.GroupBy(t => t).Any(tg => tg.Count() > 1))
                 {
                     ModelState.AddModelError("time", "Нельзя выбирать несколько одинаковых сеансов");
@@ -135,6 +142,7 @@ namespace MovieSheduler.Presentation.Controllers
                 var model = new EditSheduleRecordViewModel(cinema, movie, editRecord.Date, editRecord.SeansList);
                 return View(model);
             }
+            //if we are here then critical error rised
             _notifier.Error("При редактирование произошла ошибка!");
             return RedirectToAction("Edit", new { editRecord.CinemaId, editRecord.MovieId, date = editRecord.Date.ToShortDateString() });
         }
@@ -152,7 +160,7 @@ namespace MovieSheduler.Presentation.Controllers
             if (result.IsValid)
             {
                 _notifier.Success("Раписание успешно удалено!");
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", new { date = date.ToShortDateString() });
             }
 
             ModelState.AddErrorsFromValidationDictionary(result);

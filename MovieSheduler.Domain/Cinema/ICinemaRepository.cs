@@ -6,6 +6,10 @@ namespace MovieSheduler.Domain.Cinema
 {
     public interface ICinemaRepository: IRepository<Cinema, int>
     {
+        /// <summary>
+        /// Get all cinema
+        /// </summary>
+        /// <returns>Cinema collection</returns>
         Task<IReadOnlyCollection<Cinema>> GetAllCinemaAsync();
     }
 }

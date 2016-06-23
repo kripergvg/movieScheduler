@@ -1,4 +1,4 @@
-﻿namespace MovieSheduler.Domain
+﻿namespace MovieSheduler.Domain.Infrastructure
 {
     public interface IEntity<TPrimaryKey>
     {
