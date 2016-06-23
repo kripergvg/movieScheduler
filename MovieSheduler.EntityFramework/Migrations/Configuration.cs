@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Data.Entity.Migrations;
-using MovieSheduler.Domain;
 using MovieSheduler.Domain.Cinema;
 using MovieSheduler.Domain.Movie;
 using MovieSheduler.Domain.SheduleRecord;
@@ -59,57 +58,57 @@ namespace MovieSheduler.EntityFramework.Migrations
 
 
 
+                new SheduleRecord {Cinema = cinema2, Movie = movie4, Date = new DateTime(2016, 06, 21, 11, 00, 00)},
+                new SheduleRecord {Cinema = cinema2, Movie = movie4, Date = new DateTime(2016, 06, 21, 12, 00, 00)},
                 new SheduleRecord {Cinema = cinema2, Movie = movie4, Date = new DateTime(2016, 06, 21, 13, 00, 00)},
                 new SheduleRecord {Cinema = cinema2, Movie = movie4, Date = new DateTime(2016, 06, 21, 14, 00, 00)},
                 new SheduleRecord {Cinema = cinema2, Movie = movie4, Date = new DateTime(2016, 06, 21, 15, 00, 00)},
                 new SheduleRecord {Cinema = cinema2, Movie = movie4, Date = new DateTime(2016, 06, 21, 16, 00, 00)},
-                new SheduleRecord {Cinema = cinema2, Movie = movie4, Date = new DateTime(2016, 06, 21, 17, 00, 00)},
-                new SheduleRecord {Cinema = cinema2, Movie = movie4, Date = new DateTime(2016, 06, 21, 18, 00, 00)},
 
 
                 new SheduleRecord {Cinema = cinema2, Movie = movie5, Date = new DateTime(2016, 06, 21, 11, 00, 00)},
                 new SheduleRecord {Cinema = cinema2, Movie = movie5, Date = new DateTime(2016, 06, 21, 14, 00, 00)},
-                new SheduleRecord {Cinema = cinema2, Movie = movie5, Date = new DateTime(2016, 06, 21, 16, 00, 00)},
+                new SheduleRecord {Cinema = cinema2, Movie = movie5, Date = new DateTime(2016, 06, 21, 18, 00, 00)},
                 new SheduleRecord {Cinema = cinema2, Movie = movie5, Date = new DateTime(2016, 06, 21, 22, 00, 00)},
 
 
-                new SheduleRecord {Cinema = cinema2, Movie = movie6, Date = new DateTime(2016, 06, 21, 12, 00, 00)},
+                new SheduleRecord {Cinema = cinema2, Movie = movie6, Date = new DateTime(2016, 06, 21, 11, 00, 00)},
                 new SheduleRecord {Cinema = cinema2, Movie = movie6, Date = new DateTime(2016, 06, 21, 13, 00, 00)},
-                new SheduleRecord {Cinema = cinema2, Movie = movie6, Date = new DateTime(2016, 06, 21, 14, 00, 00)},
-                new SheduleRecord {Cinema = cinema2, Movie = movie6, Date = new DateTime(2016, 06, 21, 15, 00, 00)},
+                new SheduleRecord {Cinema = cinema2, Movie = movie6, Date = new DateTime(2016, 06, 21, 16, 00, 00)},
+                new SheduleRecord {Cinema = cinema2, Movie = movie6, Date = new DateTime(2016, 06, 21, 19, 00, 00)},
 
 
-                new SheduleRecord {Cinema = cinema2, Movie = movie1, Date = new DateTime(2016, 06, 21, 13, 00, 00)},
-                new SheduleRecord {Cinema = cinema2, Movie = movie1, Date = new DateTime(2016, 06, 21, 13, 30, 00)},
-                new SheduleRecord {Cinema = cinema2, Movie = movie1, Date = new DateTime(2016, 06, 21, 15, 00, 00)},
+                new SheduleRecord {Cinema = cinema2, Movie = movie1, Date = new DateTime(2016, 06, 21, 10, 00, 00)},
+                new SheduleRecord {Cinema = cinema2, Movie = movie1, Date = new DateTime(2016, 06, 21, 14, 30, 00)},
                 new SheduleRecord {Cinema = cinema2, Movie = movie1, Date = new DateTime(2016, 06, 21, 17, 00, 00)},
+                new SheduleRecord {Cinema = cinema2, Movie = movie1, Date = new DateTime(2016, 06, 21, 19, 00, 00)},
 
 
 
+                new SheduleRecord {Cinema = cinema3, Movie = movie4, Date = new DateTime(2016, 06, 21, 8, 00, 00)},
+                new SheduleRecord {Cinema = cinema3, Movie = movie4, Date = new DateTime(2016, 06, 21, 10, 00, 00)},
                 new SheduleRecord {Cinema = cinema3, Movie = movie4, Date = new DateTime(2016, 06, 21, 13, 00, 00)},
-                new SheduleRecord {Cinema = cinema3, Movie = movie4, Date = new DateTime(2016, 06, 21, 14, 00, 00)},
-                new SheduleRecord {Cinema = cinema3, Movie = movie4, Date = new DateTime(2016, 06, 21, 15, 00, 00)},
-                new SheduleRecord {Cinema = cinema3, Movie = movie4, Date = new DateTime(2016, 06, 21, 16, 00, 00)},
-                new SheduleRecord {Cinema = cinema3, Movie = movie4, Date = new DateTime(2016, 06, 21, 17, 00, 00)},
                 new SheduleRecord {Cinema = cinema3, Movie = movie4, Date = new DateTime(2016, 06, 21, 18, 00, 00)},
+                new SheduleRecord {Cinema = cinema3, Movie = movie4, Date = new DateTime(2016, 06, 21, 19, 00, 00)},
+                new SheduleRecord {Cinema = cinema3, Movie = movie4, Date = new DateTime(2016, 06, 21, 21, 00, 00)},
                                                   
                                                   
                 new SheduleRecord {Cinema = cinema3, Movie = movie5, Date = new DateTime(2016, 06, 21, 11, 00, 00)},
                 new SheduleRecord {Cinema = cinema3, Movie = movie5, Date = new DateTime(2016, 06, 21, 14, 00, 00)},
-                new SheduleRecord {Cinema = cinema3, Movie = movie5, Date = new DateTime(2016, 06, 21, 16, 00, 00)},
+                new SheduleRecord {Cinema = cinema3, Movie = movie5, Date = new DateTime(2016, 06, 21, 20, 00, 00)},
                 new SheduleRecord {Cinema = cinema3, Movie = movie5, Date = new DateTime(2016, 06, 21, 22, 00, 00)},
                                                   
                                                   
                 new SheduleRecord {Cinema = cinema3, Movie = movie6, Date = new DateTime(2016, 06, 21, 12, 00, 00)},
-                new SheduleRecord {Cinema = cinema3, Movie = movie6, Date = new DateTime(2016, 06, 21, 13, 00, 00)},
-                new SheduleRecord {Cinema = cinema3, Movie = movie6, Date = new DateTime(2016, 06, 21, 14, 00, 00)},
-                new SheduleRecord {Cinema = cinema3, Movie = movie6, Date = new DateTime(2016, 06, 21, 15, 00, 00)},
+                new SheduleRecord {Cinema = cinema3, Movie = movie6, Date = new DateTime(2016, 06, 21, 20, 00, 00)},
+                new SheduleRecord {Cinema = cinema3, Movie = movie6, Date = new DateTime(2016, 06, 21, 21, 00, 00)},
+                new SheduleRecord {Cinema = cinema3, Movie = movie6, Date = new DateTime(2016, 06, 21, 23, 00, 00)},
                                                   
                                                   
-                new SheduleRecord {Cinema = cinema3, Movie = movie1, Date = new DateTime(2016, 06, 21, 13, 00, 00)},
+                new SheduleRecord {Cinema = cinema3, Movie = movie1, Date = new DateTime(2016, 06, 21, 9, 00, 00)},
                 new SheduleRecord {Cinema = cinema3, Movie = movie1, Date = new DateTime(2016, 06, 21, 13, 30, 00)},
                 new SheduleRecord {Cinema = cinema3, Movie = movie1, Date = new DateTime(2016, 06, 21, 15, 00, 00)},
-                new SheduleRecord {Cinema = cinema3, Movie = movie1, Date = new DateTime(2016, 06, 21, 17, 00, 00)},
+                new SheduleRecord {Cinema = cinema3, Movie = movie1, Date = new DateTime(2016, 06, 21, 21, 00, 00)},
             };
            
             //var sheduleRecord1 = new SheduleRecord {Cinema = cinema1, Movie = movie1, Date = new DateTime(2016, 06, 21, 13, 00, 00)};
