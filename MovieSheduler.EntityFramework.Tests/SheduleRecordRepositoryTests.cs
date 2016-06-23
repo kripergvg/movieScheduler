@@ -1,13 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.Entity.Migrations;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using MovieSheduler.Domain.Cinema;
 using MovieSheduler.Domain.Movie;
 using MovieSheduler.Domain.SheduleRecord;
-using MovieSheduler.EntityFramework.Repositories;
 using MovieSheduler.EntityFramework.Repositories.SheduleRecord;
 using Shouldly;
 using Xunit;

@@ -113,13 +113,13 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MovieSheduler.Application\MovieSheduler.Application.csproj">
+    <ProjectReference Include="..\MovieSheduler.Application\MovieScheduler.Application.csproj">
       <Project>{e2f1965f-01d0-4e34-9ddb-fe6af9510a2e}</Project>
-      <Name>MovieSheduler.Application</Name>
+      <Name>MovieScheduler.Application</Name>
     </ProjectReference>
-    <ProjectReference Include="..\MovieSheduler.Presentation\MovieSheduler.Presentation.csproj">
+    <ProjectReference Include="..\MovieSheduler.Presentation\MovieScheduler.Presentation.csproj">
       <Project>{c75cef11-a3d1-4613-9f9a-23ebabacd403}</Project>
-      <Name>MovieSheduler.Presentation</Name>
+      <Name>MovieScheduler.Presentation</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

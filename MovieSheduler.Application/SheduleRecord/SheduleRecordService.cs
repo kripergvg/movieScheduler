@@ -24,10 +24,7 @@ namespace MovieSheduler.Application.SheduleRecord
         {
             using (UnitOfWorkFactory.Create())
             {
-                return new GetSheduleByDateOutput
-                {
-                    SheduleRecords = Mapper.Map<IReadOnlyCollection<SheduleRecordDto>>(await _sheduleRecordRepository.GetSheduleByDateAsync(date))
-                };
+                return new GetSheduleByDateOutput(Mapper.Map<IReadOnlyCollection<SheduleRecordDto>>(await _sheduleRecordRepository.GetSheduleByDateAsync(date)));
             }
         }
 

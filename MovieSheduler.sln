@@ -3,21 +3,21 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MovieSheduler.Presentation", "MovieSheduler.Presentation\MovieSheduler.Presentation.csproj", "{C75CEF11-A3D1-4613-9F9A-23EBABACD403}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MovieScheduler.Presentation", "MovieSheduler.Presentation\MovieScheduler.Presentation.csproj", "{C75CEF11-A3D1-4613-9F9A-23EBABACD403}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MovieSheduler.Application", "MovieSheduler.Application\MovieSheduler.Application.csproj", "{E2F1965F-01D0-4E34-9DDB-FE6AF9510A2E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MovieScheduler.Application", "MovieSheduler.Application\MovieScheduler.Application.csproj", "{E2F1965F-01D0-4E34-9DDB-FE6AF9510A2E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MovieSheduler.EntityFramework", "MovieSheduler.EntityFramework\MovieSheduler.EntityFramework.csproj", "{998652A4-B661-41FE-8EB4-101DBB74E4FA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MovieScheduler.EntityFramework", "MovieSheduler.EntityFramework\MovieScheduler.EntityFramework.csproj", "{998652A4-B661-41FE-8EB4-101DBB74E4FA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MovieSheduler.Domain", "MovieSheduler.Domain\MovieSheduler.Domain.csproj", "{BFEFD34A-ABA8-4346-A7ED-5C7A4870FF7F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MovieScheduler.Domain", "MovieSheduler.Domain\MovieScheduler.Domain.csproj", "{BFEFD34A-ABA8-4346-A7ED-5C7A4870FF7F}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{F72FE681-1D53-475C-B0DA-0913FD797F6E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MovieSheduler.Application.Tests", "MovieSheduler.Application.Tests\MovieSheduler.Application.Tests.csproj", "{A48BD617-5D16-4F4A-9D22-32FC65661818}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MovieScheduler.Application.Tests", "MovieSheduler.Application.Tests\MovieScheduler.Application.Tests.csproj", "{A48BD617-5D16-4F4A-9D22-32FC65661818}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MovieSheduler.Presentation.Tests", "MovieSheduler.Presentation.Tests\MovieSheduler.Presentation.Tests.csproj", "{9F03ED35-792A-4CE8-BDC4-E2D47F0F77B1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MovieScheduler.Presentation.Tests", "MovieSheduler.Presentation.Tests\MovieScheduler.Presentation.Tests.csproj", "{9F03ED35-792A-4CE8-BDC4-E2D47F0F77B1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MovieSheduler.EntityFramework.Tests", "MovieSheduler.EntityFramework.Tests\MovieSheduler.EntityFramework.Tests.csproj", "{ED01AE96-9319-4E30-B979-05573B4BE824}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MovieScheduler.EntityFramework.Tests", "MovieSheduler.EntityFramework.Tests\MovieScheduler.EntityFramework.Tests.csproj", "{ED01AE96-9319-4E30-B979-05573B4BE824}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -22,10 +22,7 @@ namespace MovieSheduler.Application.Cinema
         {
             using (UnitOfWorkFactory.Create())
             {
-                return new GetAllCinemaOutput
-                {
-                    Cinemas = Mapper.Map<IReadOnlyCollection<CinemaDto>>(await _cinemaRepository.GetAllCinemaAsync())
-                };
+                return new GetAllCinemaOutput(Mapper.Map<IReadOnlyCollection<CinemaDto>>(await _cinemaRepository.GetAllCinemaAsync()));
             }
         }
 

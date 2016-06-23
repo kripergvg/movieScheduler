@@ -92,13 +92,13 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MovieSheduler.Domain\MovieSheduler.Domain.csproj">
+    <ProjectReference Include="..\MovieSheduler.Domain\MovieScheduler.Domain.csproj">
       <Project>{bfefd34a-aba8-4346-a7ed-5c7a4870ff7f}</Project>
-      <Name>MovieSheduler.Domain</Name>
+      <Name>MovieScheduler.Domain</Name>
     </ProjectReference>
-    <ProjectReference Include="..\MovieSheduler.EntityFramework\MovieSheduler.EntityFramework.csproj">
+    <ProjectReference Include="..\MovieSheduler.EntityFramework\MovieScheduler.EntityFramework.csproj">
       <Project>{998652a4-b661-41fe-8eb4-101dbb74e4fa}</Project>
-      <Name>MovieSheduler.EntityFramework</Name>
+      <Name>MovieScheduler.EntityFramework</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

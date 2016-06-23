@@ -18,6 +18,7 @@ namespace MovieSheduler.Presentation.Core.ValidationAttributes
                     var current = enumerator.Current;
                     return true;
                 }
+                //If error than collection is empty
                 catch (InvalidOperationException)
                 {
                     return false;

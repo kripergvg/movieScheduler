@@ -51,16 +51,10 @@ namespace MovieSheduler.Presentation.Tests
             sheduleRecordSevice.Setup(s => s.RecordExist(It.IsAny<RecordExistInput>())).Returns(Task.FromResult(true));
 
             var movieService = new Mock<IMovieService>();
-            movieService.Setup(m => m.GetAllMovies()).Returns(Task.FromResult(new GetAllMoviesOutput
-            {
-                Movies = new List<MovieDto>()
-            }));
+            movieService.Setup(m => m.GetAllMovies()).Returns(Task.FromResult(new GetAllMoviesOutput(new List<MovieDto>())));
 
             var cinemaService = new Mock<ICinemaService>();
-            cinemaService.Setup(m => m.GetAllCinema()).Returns(Task.FromResult(new GetAllCinemaOutput
-            {
-                Cinemas = new List<CinemaDto>()
-            }));
+            cinemaService.Setup(m => m.GetAllCinema()).Returns(Task.FromResult(new GetAllCinemaOutput(new List<CinemaDto>())));
 
             var controller = new SheduleController(sheduleRecordSevice.Object, movieService.Object, cinemaService.Object, notifer.Object);
             var record = new AddSheduleRecord
@@ -167,10 +161,10 @@ namespace MovieSheduler.Presentation.Tests
                 .Returns(Task.FromResult((IReadOnlyCollection<TimeSpan>)new List<TimeSpan>().AsReadOnly()));
 
             var movieService = new Mock<IMovieService>();
-            movieService.Setup(m => m.GetMovieById(It.IsAny<int>())).Returns(Task.FromResult(new MovieDto()));
+            movieService.Setup(m => m.GetMovieById(It.IsAny<int>())).Returns(Task.FromResult(new MovieDto(1, "Касабланка")));
 
             var cinemaService = new Mock<ICinemaService>();
-            cinemaService.Setup(m => m.GetCinemaById(It.IsAny<int>())).Returns(Task.FromResult(new CinemaDto()));
+            cinemaService.Setup(m => m.GetCinemaById(It.IsAny<int>())).Returns(Task.FromResult(new CinemaDto(1, "Звезда")));
 
             var controller = new SheduleController(sheduleRecordSevice.Object, movieService.Object, cinemaService.Object, notifer.Object);
 
@@ -231,10 +225,10 @@ namespace MovieSheduler.Presentation.Tests
             sheduleRecordSevice.Setup(s => s.RecordExist(It.IsAny<RecordExistInput>())).Returns(Task.FromResult(true));
 
             var movieService = new Mock<IMovieService>();
-            movieService.Setup(m => m.GetMovieById(It.IsAny<int>())).Returns(Task.FromResult(new MovieDto()));
+            movieService.Setup(m => m.GetMovieById(It.IsAny<int>())).Returns(Task.FromResult(new MovieDto(1, "Касабланка")));
 
             var cinemaService = new Mock<ICinemaService>();
-            cinemaService.Setup(m => m.GetCinemaById(It.IsAny<int>())).Returns(Task.FromResult(new CinemaDto()));
+            cinemaService.Setup(m => m.GetCinemaById(It.IsAny<int>())).Returns(Task.FromResult(new CinemaDto(1, "Звезда")));
 
             var controller = new SheduleController(sheduleRecordSevice.Object, movieService.Object, cinemaService.Object, notifer.Object);
             var record = new EditSheduleRecord
@@ -352,10 +346,10 @@ namespace MovieSheduler.Presentation.Tests
                 .Returns(Task.FromResult((IReadOnlyCollection<TimeSpan>)new List<TimeSpan>().AsReadOnly()));
 
             var movieService = new Mock<IMovieService>();
-            movieService.Setup(m => m.GetMovieById(It.IsAny<int>())).Returns(Task.FromResult(new MovieDto()));
+            movieService.Setup(m => m.GetMovieById(It.IsAny<int>())).Returns(Task.FromResult(new MovieDto(1, "Касабланка")));
 
             var cinemaService = new Mock<ICinemaService>();
-            cinemaService.Setup(m => m.GetCinemaById(It.IsAny<int>())).Returns(Task.FromResult(new CinemaDto()));
+            cinemaService.Setup(m => m.GetCinemaById(It.IsAny<int>())).Returns(Task.FromResult(new CinemaDto(1, "Звезда")));
 
             var controller = new SheduleController(sheduleRecordSevice.Object, movieService.Object, cinemaService.Object, notifer.Object);
 

@@ -11,8 +11,7 @@ namespace MovieSheduler.Presentation.Core.ModelBinder
             {
                 throw new ArgumentNullException(nameof(bindingContext));
             }
-
-            //TODO ПЕРЕДЕЛАТь
+            
             ValueProviderResult valueResult = bindingContext.ValueProvider.GetValue(bindingContext.ModelName);
             if (valueResult != null)
             {
