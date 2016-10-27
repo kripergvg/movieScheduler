@@ -49,7 +49,6 @@ namespace MovieSheduler.Presentation.Controllers
 
             GetSheduleByDateOutput shedule = await _sheduleRecordService.GetShedule(selectedDate);
 
-
             var model = new SheduleListViewModel(selectedDate, shedule.SheduleRecords, availableDates);
 
             return View(model);

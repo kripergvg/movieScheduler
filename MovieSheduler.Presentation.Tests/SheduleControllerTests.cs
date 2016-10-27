@@ -106,27 +106,6 @@ namespace MovieSheduler.Presentation.Tests
         }
 
         [Fact]
-        public async Task Add_Should_Return_Not_Found()
-        {
-            //Arrange     
-            var notifer = new Mock<INotifier>();
-
-            var sheduleRecordSevice = new Mock<ISheduleRecordService>();
-            sheduleRecordSevice.Setup(s => s.RecordExist(It.IsAny<RecordExistInput>())).Returns(Task.FromResult(false));
-
-            var movieService = new Mock<IMovieService>();
-            var cinemaService = new Mock<ICinemaService>();
-
-            var controller = new SheduleController(sheduleRecordSevice.Object, movieService.Object, cinemaService.Object, notifer.Object);
-
-            //Act
-            var result = await controller.Add(new AddSheduleRecord());
-
-            //Assert 
-            result.ShouldBeOfType<HttpNotFoundResult>();
-        }
-
-        [Fact]
         public async Task EditGet_Should_Return_Not_Found()
         {
             //Arrange     

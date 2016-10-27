@@ -14,9 +14,7 @@
             <option value="@dateListItem.Text" @(dateListItem.Selected ? "selected" : "")>@dateListItem.Text</option>
         }
     </select>
-    @*@Html.DropDownListFor(m => m.Date, Model.AvailableDates, new { @class = "form-control", data_val = false })*@
     <input type="submit" class="btn btn-default" value="Показать" />
-    @*<a class="btn btn-default" href="@Url.Action("Add")">Показать</a>*@
 }
 
 

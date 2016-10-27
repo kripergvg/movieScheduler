@@ -26,8 +26,6 @@
     <div class="form-group">
         @Html.LabelFor(m => m.Date, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
-            @*<input type="text" value="02-16-2012" data-datepicker>*@
-            @*@(Model.Date != default(DateTime) ? Model.Date.Day + "/" + Model.Date.Month + "/" + Model.Date.Year : "")*@
             <div data-datepicker data-hidden-field="Date" data-date="@(Model.Date!=default(DateTime)?Model.Date.Day+"/"+Model.Date.Month+"/"+Model.Date.Year:"")"></div>
             <input data-val="true" data-val-required="Нужно выбрать дату" name="Date" id="Date" value="@(Model.Date!=default(DateTime)?Model.Date.ToString():"")" type="hidden">
         </div>
@@ -80,7 +78,6 @@
         <div class="col-md-offset-2 col-md-10">
             <input type="submit" class="btn btn-success" value="Сохранить"/>
             <a href="@Url.Action("Index")"  class="btn btn-warning">Отмена</a>
-            @*<input type="submit" class="btn btn-warning" value="Отмена" />*@
         </div>
     </div>
 }

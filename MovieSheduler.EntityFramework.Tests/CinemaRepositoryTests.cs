@@ -54,7 +54,7 @@ namespace MovieSheduler.EntityFramework.Tests
             context.Cinemas.Add(new Cinema
             {
                 Id = 1,
-                Name = "Звезда" 
+                Name = "Звезда"
             });
             context.SaveChanges();
             context.DeatachAllEntities();

@@ -13,6 +13,7 @@ namespace MovieSheduler.EntityFramework
         public MovieShedulerContext()
             : base("name=MovieShedulerContext")
         {
+            Database.SetInitializer(new CreateMovieSchedulerDatabseIfNotExist());
         }
 
         public MovieShedulerContext(DbConnection connection)
@@ -22,7 +23,7 @@ namespace MovieSheduler.EntityFramework
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            Database.SetInitializer(new CreateMovieSchedulerDatabseIfNotExist());
+            
             modelBuilder.Configurations.Add(new SheduleRecordConfiguration());
             modelBuilder.Configurations.Add(new MovieConfiguration());
             modelBuilder.Configurations.Add(new CinemaConfiguration());
